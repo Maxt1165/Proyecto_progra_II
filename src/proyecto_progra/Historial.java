@@ -62,9 +62,7 @@ public class Historial {
             }          }
             tabla = new JTable(modelo);
                 return new JScrollPane(tabla);
-        }
-        // Tabla
-        catch (SQLException e) {
+        } catch (SQLException e) {
             System.err.println("Error al insertar paciente: " + e.getMessage());
             throw new RuntimeException("Error en procedimiento almacenado", e);
         }
