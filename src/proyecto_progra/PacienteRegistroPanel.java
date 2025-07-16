@@ -48,43 +48,49 @@ public class PacienteRegistroPanel extends JPanel {
     }
 
     public void registrarPaciente(){  
-        if(txtDNI.getText().trim().isEmpty() || txtNombrePac.getText().trim().isEmpty() || txtApellidoPac.getText().trim().isEmpty() || txtFechaNac.getText().trim().isEmpty() || txtDomicilio.getText().trim().isEmpty() || cbxSexo.getSelectedItem().toString().isEmpty()){
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        LocalDate fechaNac;
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            fechaNac = LocalDate.parse(txtFechaNac.getText().trim(), formatter);
-        } catch (DateTimeParseException ex) {
-            JOptionPane.showMessageDialog(this, "La fecha de nacimiento debe tener el formato AAAA-MM-DD.", "Formato de fecha inválido", JOptionPane.ERROR_MESSAGE);
-            return;
+            if(txtDNI.getText().trim().isEmpty() || txtNombrePac.getText().trim().isEmpty() || txtApellidoPac.getText().trim().isEmpty() || txtFechaNac.getText().trim().isEmpty() || txtDomicilio.getText().trim().isEmpty() || cbxSexo.getSelectedItem().toString().isEmpty()){
+                JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            LocalDate fechaNac;
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                fechaNac = LocalDate.parse(txtFechaNac.getText().trim(), formatter);
+            } catch (DateTimeParseException ex) {
+                JOptionPane.showMessageDialog(this, "La fecha de nacimiento debe tener el formato AAAA-MM-DD.", "Formato de fecha inválido", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            Date sqlFechaNac = Date.valueOf(fechaNac);
+            Date sqlFechaReg = Date.valueOf(LocalDate.now());
+            boolean e = false;
+    
+            if(verificarDNI(txtDNI.getText())){
+                Paciente p = new Paciente(
+                txtDNI.getText().trim(), 
+                txtNombrePac.getText().trim(), 
+                txtApellidoPac.getText().trim(), 
+                cbxSexo.getSelectedItem().toString(),
+                sqlFechaNac, 
+                txtDomicilio.getText().trim(),
+                sqlFechaReg);
+                e = PacienteDAO.insertarPaciente(p);
+            }
+            if (e) {
+                JOptionPane.showMessageDialog(this, "Paciente registrado");
+            } else {
+                JOptionPane.showMessageDialog(this,
+                "No se pudo registrar al paciente",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace(); // imprime error en consola
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
-        Date sqlFechaNac = Date.valueOf(fechaNac);
-        Date sqlFechaReg = Date.valueOf(LocalDate.now());
-        boolean e = false;
- 
-        if(!verificarDNI(txtDNI.getText())){
-            Paciente p = new Paciente(
-            txtDNI.getText().trim(), 
-            txtNombrePac.getText().trim(), 
-            txtApellidoPac.getText().trim(), 
-            cbxSexo.getSelectedItem().toString(),
-            sqlFechaNac, 
-            txtDomicilio.getText().trim(),
-            sqlFechaReg);
-            e = PacienteDAO.insertarPaciente(p);
-        }
-        if (e) {
-            JOptionPane.showMessageDialog(this, "Paciente registrado");
-        } else {
-            JOptionPane.showMessageDialog(this,
-            "No se pudo registrar al paciente",
-            "Error",
-            JOptionPane.ERROR_MESSAGE);
-        }
     }
 
     public boolean verificarDNI(String dni){
