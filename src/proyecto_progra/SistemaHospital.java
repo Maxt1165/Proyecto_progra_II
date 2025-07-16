@@ -77,6 +77,15 @@ public class SistemaHospital extends JFrame {
         return panel;
     }
 
+    public JPanel panelRegistroCitas() {
+        JPanel panel = new JPanel(new BorderLayout());
+        JTabbedPane pestañas = new JTabbedPane();
+        pestañas.add("Agendar Cita", new CitaRegistroPanel());
+        pestañas.add("Modificar Cita", new CitaRegistroPanel());
+        panel.add(pestañas, BorderLayout.CENTER);
+        return panel;
+    }
+
 class PanelHistorial extends JPanel {
     JTextField txtBuscarDNI = new JTextField();
     JButton btnBuscar = new JButton("Buscar Historial");
@@ -116,14 +125,6 @@ class PanelHistorial extends JPanel {
             scrollClinico.setViewportView(tablaClinico);
         });
     }
-    private JPanel panelRegistroCitas() {
-    JPanel panel = new JPanel(new BorderLayout());
-    JTabbedPane pestañas = new JTabbedPane();
-    pestañas.add("Agendar Cita", new CitaRegistroPanel());
-    pestañas.add("Modificar Cita", new CitaRegistroPanel());
-    panel.add(pestañas, BorderLayout.CENTER);
-    return panel;
-}
 }
 
     
