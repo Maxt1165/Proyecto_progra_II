@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -34,10 +33,7 @@ public class Historial {
     public boolean validar() {
         return diagnostico != null && !diagnostico.isBlank();
     }
-
-            JTable tabla;
-            DefaultTableModel modelo;
-
+        
     public static JTable Obtenerhistorial(String dniPaciente) {
     final String SQL = "{call sp_HistorialPorPaciente(?)}";  // Sintaxis estándar
     
