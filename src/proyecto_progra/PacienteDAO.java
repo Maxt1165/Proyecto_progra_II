@@ -9,7 +9,7 @@ public class PacienteDAO {
     public static boolean insertarPaciente(Paciente paciente) {
         String sql = "INSERT INTO Pacientes (DNI, Nombre, Apellido, Sexo, FechaNac, FechaReg, Domicilio) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = ConexionMySQL.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+            PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, paciente.getDni());
             ps.setString(2, paciente.getNombre());

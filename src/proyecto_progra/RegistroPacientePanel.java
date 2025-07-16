@@ -17,7 +17,7 @@ public class RegistroPacientePanel extends JPanel {
     JButton btnRegistrar = new JButton("Registrar");
     
     @SuppressWarnings("rawtypes")
-    JComboBox cbxSexo = new JComboBox<>(new String[]{"Masculino", "Femenino"});
+    JComboBox cbxSexo = new JComboBox<>(new String[]{"M", "F"});
 
     public RegistroPacientePanel() {
         setLayout(new GridLayout(7, 2, 10, 10));
