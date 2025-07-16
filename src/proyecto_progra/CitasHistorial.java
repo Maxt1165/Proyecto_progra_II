@@ -35,14 +35,14 @@ public class CitasHistorial {
     }
         
     public static JTable Obtenerhistorial(String dniPaciente) {
-    final String SQL = "{call sp_HistorialPorPaciente(?)}";  // Sintaxis estándar
+    final String SQL = "{call sp_CitasPorPaciente(?)}"; 
     
     try (Connection conn = ConexionMySQL.getConnection();
          CallableStatement stmt = conn.prepareCall(SQL)) {
         stmt.setString(1, dniPaciente);
         stmt.execute();
             
-        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Nombre Paciente", "Apellido Paciente", "Diagnóstico Actual", "Tratamiento", "Observaciones"}, 0);
+        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Nombre Paciente", "Apellido Paciente", "Nombre Medico", "Apellido Medico", "Fecha y Hora", "Estado", "Motivo"}, 0);
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
          //Si devuelve un ResultSet
         try (ResultSet rs = stmt.getResultSet()) {
@@ -50,16 +50,18 @@ public class CitasHistorial {
             Object[] fila = {
                     rs.getString("Nombre Paciente"),
                     rs.getString("Apellido Paciente"),
-                    rs.getString("Diagnostico Actual"),
-                    rs.getString("Tratamiento"),
-                    rs.getString("Observaciones")
+                    rs.getString("Nombre Medico"),
+                    rs.getString("Apellido Medico"),
+                    rs.getString("FechaHora"),
+                    rs.getString("Estado"),
+                    rs.getString("Motivo")
                 };
                 modelo.addRow(fila);
             }          }
             //JTable tabla = new JTable(modelo);
                 return new JTable(modelo);
         } catch (SQLException e) {
-            System.err.println("Error al insertar paciente: " + e.getMessage());
+            System.err.println("Error al buscar paciente: " + e.getMessage());
             throw new RuntimeException("Error en procedimiento almacenado", e);
         }
     }

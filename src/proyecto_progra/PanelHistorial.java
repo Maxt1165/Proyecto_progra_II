@@ -35,7 +35,7 @@ class PanelHistorial extends JPanel {
         // Acción del botón buscar
         btnBuscar.addActionListener(e -> {
             String dni = txtBuscarDNI.getText().trim();
-            JTable tablaCitas = Historial.Obtenerhistorial(dni);
+            JTable tablaCitas = CitasHistorial.Obtenerhistorial(dni);
             JTable tablaClinico = Historial.Obtenerhistorial(dni);
 
             // Actualizar scroll panes
