@@ -134,32 +134,35 @@ public class SistemaHospital extends JFrame {
 // Panel de Registro de Paciente
 class RegistroPacientePanel extends JPanel {
     public RegistroPacientePanel() {
-        setLayout(new GridLayout(8, 2, 10, 10));
+        setLayout(new GridLayout(7, 2, 10, 10));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        JTextField txtNombrePac = new JTextField();
+        JTextField txtApellidoPac = new JTextField();
+        JTextField txtDNI = new JTextField();
+        JTextField txtFechaNac = new JTextField();
+        JTextField txtDomicilio= new JTextField();
+        JButton btnRegistrar = new JButton("Registrar");
 
         add(new JLabel("Nombre *"));
-        add(new JTextField());
+        add(txtNombrePac);
 
-        add(new JLabel("Apellido Paterno *"));
-        add(new JTextField());
-
-        add(new JLabel("Apellido Materno *"));
-        add(new JTextField());
+        add(new JLabel("Apellidos *"));
+        add(txtApellidoPac);
 
         add(new JLabel("DNI *"));
-        add(new JTextField());
+        add(txtDNI);
 
         add(new JLabel("Sexo *"));
         add(new JComboBox<>(new String[]{"Masculino", "Femenino"}));
 
         add(new JLabel("Fecha de Nacimiento *"));
-        add(new JTextField());
+        add(txtFechaNac);
 
         add(new JLabel("Domicilio *"));
-        add(new JTextField());
+        add(txtDomicilio);
 
         add(new JLabel(""));
-        add(new JButton("Registrar"));
+        add(btnRegistrar);
     }
 }
 
