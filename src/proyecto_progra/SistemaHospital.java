@@ -3,12 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package proyecto_progra;
-//We will get it 
-// amor, ahora estoy algo frustrado, no me siento bien, tratame bonito si :3?
-//borra estos comentarios si si 
 /**
  *
- * @author maoao
+ * @author LyM
  */
 import javax.swing.*;
 import java.awt.*;
