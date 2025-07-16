@@ -8,7 +8,7 @@ import java.time.format.DateTimeParseException;
 import javax.swing.*;
    
 
-public class RegistroPacientePanel extends JPanel {
+public class PacienteRegistroPanel extends JPanel {
     JTextField txtNombrePac = new JTextField();
     JTextField txtApellidoPac = new JTextField();
     JTextField txtDNI = new JTextField();
@@ -19,7 +19,7 @@ public class RegistroPacientePanel extends JPanel {
     @SuppressWarnings("rawtypes")
     JComboBox cbxSexo = new JComboBox<>(new String[]{"M", "F"});
 
-    public RegistroPacientePanel() {
+    public PacienteRegistroPanel() {
         setLayout(new GridLayout(7, 2, 10, 10));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 

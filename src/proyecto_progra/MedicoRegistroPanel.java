@@ -6,13 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.*;
-public  class RegistroMedicoPanel extends JPanel {
+public  class MedicoRegistroPanel extends JPanel {
     JTextField txtNombre = new JTextField();
     JTextField txtApellidos = new JTextField();       
     JTextField txtDNI = new JTextField();
     JTextField txtEspecialidad = new JTextField();
     JButton btnRegistrar = new JButton("Registrar");
-    public RegistroMedicoPanel() {
+    public MedicoRegistroPanel() {
 
         setLayout(new GridLayout(5, 2, 10, 10));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
