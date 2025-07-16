@@ -197,6 +197,7 @@ class RegistroPacientePanel extends JPanel {
         }
         Date sqlFechaNac = Date.valueOf(fechaNac);
         Date sqlFechaReg = Date.valueOf(LocalDate.now());
+        boolean e = false;
         if(verificarDNI(txtDNI.getText())){
             Paciente p = new Paciente(
             txtDNI.getText().trim(), 
@@ -207,8 +208,17 @@ class RegistroPacientePanel extends JPanel {
             txtDomicilio.getText().trim(),
             sqlFechaReg
             );
+            e = PacienteDAO.insertarPaciente(p);
         }
-        boolean e = PacienteDAO.insertarPaciente(p);
+        if (e) {
+        JOptionPane.showMessageDialog(this, "Paciente registrado");
+        // limpiarCampos();
+        } else {
+        JOptionPane.showMessageDialog(this,
+            "No se pudo registrar al paciente",
+            "Error",
+            JOptionPane.ERROR_MESSAGE);
+    }
     }
 
     public boolean verificarDNI(String dni){
