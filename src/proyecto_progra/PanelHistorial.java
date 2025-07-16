@@ -13,6 +13,7 @@ class PanelHistorial extends JPanel {
     JScrollPane scrollCitas = new JScrollPane();
     JScrollPane scrollClinico = new JScrollPane();
 
+    @SuppressWarnings("unused")
     public PanelHistorial() {
         setLayout(new BorderLayout());
         

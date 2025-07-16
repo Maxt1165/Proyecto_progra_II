@@ -13,6 +13,7 @@ class CitaRegistroPanel extends JPanel {
     private JTextField txtHorarioManual = new JTextField("AAAA-MM-DD HH:MM");
     private JButton btnAgendar = new JButton("Agendar Cita");
 
+    @SuppressWarnings("unused")
     public CitaRegistroPanel() {
         setLayout(new GridBagLayout());
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -67,27 +68,43 @@ class CitaRegistroPanel extends JPanel {
         }
     }
 
-    private void registrarCita() {
+    public void registrarCita() {
         String dniPaciente = txtDNI.getText().trim();
-        String dniMedico = cmbMedicos.getSelectedItem().toString().split(" - ")[0];
+        String dniMedico = cmbMedicos.getSelectedItem().toString();
         String motivo = txtMotivo.getText().trim();
 
-        // Validaciones (igual que antes)
-        // ...
-
-        Timestamp fechaHoraSQL;
-        if (chkHorarioManual.isSelected()) {
-            try {
-                LocalDateTime fechaManual = LocalDateTime.parse(txtHorarioManual.getText().trim().replace(" ", "T"));
-                fechaHoraSQL = Timestamp.valueOf(fechaManual);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Formato de fecha inválido. Use: AAAA-MM-DD HH:MM", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        } else {
-            fechaHoraSQL = Timestamp.valueOf(LocalDateTime.now().plusHours(1));
+        if (dniPaciente.isEmpty() || dniMedico.isEmpty() || motivo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
-        // Resto del código para insertar la cita...
+        if (!CitaDAO.existePaciente(dniPaciente)) {
+            JOptionPane.showMessageDialog(this, "El paciente no está registrado.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!CitaDAO.existeMedico(dniMedico)) {
+            JOptionPane.showMessageDialog(this, "El médico no está registrado.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        LocalDateTime ahora = LocalDateTime.now().plusHours(1); 
+        Timestamp fechaHoraSQL = Timestamp.valueOf(ahora); 
+
+        Cita cita = new Cita(
+            dniPaciente,
+            dniMedico,
+            fechaHoraSQL,
+            0, 
+            motivo
+        );
+
+        boolean exito = CitaDAO.insertarCita(cita);
+
+        if (exito) {
+            JOptionPane.showMessageDialog(this, "Cita registrada con éxito.");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo registrar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

@@ -19,6 +19,7 @@ public class PacienteRegistroPanel extends JPanel {
     @SuppressWarnings("rawtypes")
     JComboBox cbxSexo = new JComboBox<>(new String[]{"M", "F"});
 
+    @SuppressWarnings("unused")
     public PacienteRegistroPanel() {
         setLayout(new GridLayout(7, 2, 10, 10));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));

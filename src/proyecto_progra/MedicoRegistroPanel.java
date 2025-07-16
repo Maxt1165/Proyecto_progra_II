@@ -12,6 +12,7 @@ public  class MedicoRegistroPanel extends JPanel {
     JTextField txtDNI = new JTextField();
     JTextField txtEspecialidad = new JTextField();
     JButton btnRegistrar = new JButton("Registrar");
+    @SuppressWarnings("unused")
     public MedicoRegistroPanel() {
 
         setLayout(new GridLayout(5, 2, 10, 10));
