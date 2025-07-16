@@ -1,7 +1,11 @@
 package proyecto_progra;
 
-import javax.swing.*;
 import java.awt.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.*;
 public  class RegistroMedicoPanel extends JPanel {
     JTextField txtNombre = new JTextField();
     JTextField txtApellidos = new JTextField();       
@@ -58,6 +62,25 @@ public  class RegistroMedicoPanel extends JPanel {
         }
 
     public boolean verificarDNI(String dni){
+         // Validación básica de formato
+        if (dni == null || !dni.matches("\\d{8}")) {
+            return false;
+        }
+        
+        // Verificar en base de datos
+        try (Connection conn = ConexionMySQL.getConnection()) {
+            String sql = "SELECT COUNT(*) FROM Medicos WHERE dni = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, dni);  
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        return rs.getInt(1) == 0; // Si no hay registros, el DNI es válido
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al verificar DNI: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
         return false;
-    }
-    }
+    }    
+}
