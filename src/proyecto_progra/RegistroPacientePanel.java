@@ -1,22 +1,12 @@
 package proyecto_progra;
 
-import java.awt.GridLayout;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.awt.*;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
+   
 
 public class RegistroPacientePanel extends JPanel {
     JTextField txtNombrePac = new JTextField();
@@ -25,6 +15,8 @@ public class RegistroPacientePanel extends JPanel {
     JTextField txtFechaNac = new JTextField();
     JTextField txtDomicilio= new JTextField();
     JButton btnRegistrar = new JButton("Registrar");
+    
+    @SuppressWarnings("rawtypes")
     JComboBox cbxSexo = new JComboBox<>(new String[]{"Masculino", "Femenino"});
 
     public RegistroPacientePanel() {
@@ -103,7 +95,7 @@ public class RegistroPacientePanel extends JPanel {
         
         // Verificar en base de datos
         try (Connection conn = ConexionMySQL.getConnection()) {
-            String sql = "SELECT COUNT(*) FROM pacientes WHERE dni = ?";
+            String sql = "SELECT COUNT(*) FROM Pacientes WHERE dni = ?";
             
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, dni);  
@@ -115,7 +107,6 @@ public class RegistroPacientePanel extends JPanel {
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al verificar DNI: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
         }
         return false;
     } 
