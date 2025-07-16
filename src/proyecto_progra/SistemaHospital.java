@@ -274,7 +274,6 @@ class RegistroMedicoPanel extends JPanel {
                 medico = new Medico(dni, nombre, apellidos, especialidad);
                 e = MedicoDAO.insertarMedico(medico);
             }
-            
 
             if (e) {
                 JOptionPane.showMessageDialog(this, "Médico registrado exitosamente.");

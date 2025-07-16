@@ -8,18 +8,16 @@ package proyecto_progra;
  *
  * @author maoao
  */
-import java.time.LocalDateTime;
+import java.sql.*;
 
 public class Cita {
-    private int id;
     private String dniPaciente;
     private String dniMedico;
-    private LocalDateTime fechaHora;
+    private Date fechaHora;
+    private String estado;
     private String motivo;
-    private String estado; // pendiente, completada, cancelada
 
-    public Cita(int id, String dniPaciente, String dniMedico, LocalDateTime fechaHora, String motivo, String estado) {
-        this.id = id;
+    public Cita(String dniPaciente, String dniMedico, Date fechaHora, String estado, String motivo) {
         this.dniPaciente = dniPaciente;
         this.dniMedico = dniMedico;
         this.fechaHora = fechaHora;
@@ -33,15 +31,6 @@ public class Cita {
 
     public void cancelar() {
         this.estado = "cancelada";
-    }
-
-    // Getters y setters...
-
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getDniPaciente() {
@@ -58,10 +47,10 @@ public class Cita {
         this.dniMedico = dniMedico;
     }
 
-    public LocalDateTime getFechaHora() {
+    public Date getFechaHora() {
         return fechaHora;
     }
-    public void setFechaHora(LocalDateTime fechaHora) {
+    public void setFechaHora(Date fechaHora) {
         this.fechaHora = fechaHora;
     }
 
