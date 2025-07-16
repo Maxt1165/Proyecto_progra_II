@@ -36,4 +36,46 @@ public class Cita {
     }
 
     // Getters y setters...
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDniPaciente() {
+        return dniPaciente;
+    }
+    public void setDniPaciente(String dniPaciente) {
+        this.dniPaciente = dniPaciente;
+    }
+
+    public String getDniMedico() {
+        return dniMedico;
+    }
+    public void setDniMedico(String dniMedico) {
+        this.dniMedico = dniMedico;
+    }
+
+    public LocalDateTime getFechaHora() {
+        return fechaHora;
+    }
+    public void setFechaHora(LocalDateTime fechaHora) {
+        this.fechaHora = fechaHora;
+    }
+
+    public String getMotivo() {
+        return motivo;
+    }
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 }

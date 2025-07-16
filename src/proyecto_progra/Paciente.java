@@ -12,7 +12,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Paciente {
-    
     private String dni;
     private String nombre;
     private String apellidos;
@@ -93,7 +92,6 @@ public class Paciente {
     public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
-
 
 }
 
