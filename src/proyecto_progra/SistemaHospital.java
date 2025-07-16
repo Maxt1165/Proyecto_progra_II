@@ -9,6 +9,7 @@ package proyecto_progra;
  */
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -138,6 +139,47 @@ public class SistemaHospital extends JFrame {
         panel.add(btnAñadir, BorderLayout.SOUTH);
 
         return panel;
+    }
+
+    public void registrarCita() {
+        String dniPaciente = txtDNI.getText().trim();
+        String dniMedico = txtMedico.getText().trim();
+        String motivo = txtMotivo.getText().trim();
+
+        if (dniPaciente.isEmpty() || dniMedico.isEmpty() || motivo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!CitaDAO.existePaciente(dniPaciente)) {
+            JOptionPane.showMessageDialog(this, "El paciente no está registrado.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!CitaDAO.existeMedico(dniMedico)) {
+            JOptionPane.showMessageDialog(this, "El médico no está registrado.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Obtener fecha y hora actual como "automática"
+        LocalDateTime ahora = LocalDateTime.now().plusHours(1); // por ejemplo: cita para dentro de 1 hora
+        Timestamp fechaHoraSQL = Timestamp.valueOf(ahora); // convierte a formato compatible con MySQL
+
+        Cita cita = new Cita(
+            dniPaciente,
+            dniMedico,
+            fechaHoraSQL,
+            0, // estado: pendiente
+            motivo
+        );
+
+        boolean exito = CitaDAO.insertarCita(cita);
+
+        if (exito) {
+            JOptionPane.showMessageDialog(this, "Cita registrada con éxito.");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo registrar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public static void main(String[] args) {

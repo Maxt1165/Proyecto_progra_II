@@ -13,11 +13,11 @@ import java.sql.*;
 public class Cita {
     private String dniPaciente;
     private String dniMedico;
-    private Date fechaHora;
+    private Timestamp fechaHora;
     private int estado;
     private String motivo;
 
-    public Cita(String dniPaciente, String dniMedico, Date fechaHora, int estado, String motivo) {
+    public Cita(String dniPaciente, String dniMedico, Timestamp fechaHora, int estado, String motivo) {
         this.dniPaciente = dniPaciente;
         this.dniMedico = dniMedico;
         this.fechaHora = fechaHora;
@@ -47,10 +47,10 @@ public class Cita {
         this.dniMedico = dniMedico;
     }
 
-    public Date getFechaHora() {
+    public Timestamp getFechaHora() {
         return fechaHora;
     }
-    public void setFechaHora(Date fechaHora) {
+    public void setFechaHora(Timestamp fechaHora) {
         this.fechaHora = fechaHora;
     }
 
