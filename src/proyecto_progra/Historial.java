@@ -38,15 +38,15 @@ public class Historial {
             JTable tabla;
             DefaultTableModel modelo;
 
-    public JScrollPane Obtenerhistorial(int dniPaciente) {
+    public static JTable Obtenerhistorial(String dniPaciente) {
     final String SQL = "{call sp_HistorialPorPaciente(?)}";  // Sintaxis estándar
     
     try (Connection conn = ConexionMySQL.getConnection();
          CallableStatement stmt = conn.prepareCall(SQL)) {
-        stmt.setInt(1, dniPaciente);
+        stmt.setString(1, dniPaciente);
         stmt.execute();
             
-        modelo = new DefaultTableModel(new String[]{"Nombre Paciente", "Apellido Paciente", "Diagnóstico Actual", "Tratamiento", "Observaciones"}, 0);
+        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Nombre Paciente", "Apellido Paciente", "Diagnóstico Actual", "Tratamiento", "Observaciones"}, 0);
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
          //Si devuelve un ResultSet
         try (ResultSet rs = stmt.getResultSet()) {
@@ -60,8 +60,8 @@ public class Historial {
                 };
                 modelo.addRow(fila);
             }          }
-            tabla = new JTable(modelo);
-                return new JScrollPane(tabla);
+            //JTable tabla = new JTable(modelo);
+                return new JTable(modelo);
         } catch (SQLException e) {
             System.err.println("Error al insertar paciente: " + e.getMessage());
             throw new RuntimeException("Error en procedimiento almacenado", e);
