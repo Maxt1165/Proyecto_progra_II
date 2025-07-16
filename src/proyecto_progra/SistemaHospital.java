@@ -105,6 +105,8 @@ public class SistemaHospital extends JFrame {
 
         add(new JLabel(""));
         add(btnAgendar);
+
+        btnAgendar.addActionListener(e->registrarCita());
         }
 
         public void registrarCita() {
