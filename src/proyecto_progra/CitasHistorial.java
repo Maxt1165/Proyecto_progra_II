@@ -62,7 +62,7 @@ public class CitasHistorial {
                     rs.getString("Nombre Medico"),
                     rs.getString("Apellido Medico"),
                     rs.getString("FechaHora"),
-
+                    step,
                     rs.getString("Motivo")
                 };
                 modelo.addRow(fila);
