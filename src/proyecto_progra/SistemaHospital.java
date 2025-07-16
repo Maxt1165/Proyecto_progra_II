@@ -4,6 +4,8 @@
  */
 package proyecto_progra;
 //We will get it 
+// amor, ahora estoy algo frustrado, no me siento bien, tratame bonito si :3?
+//borra estos comentarios si si 
 /**
  *
  * @author maoao
