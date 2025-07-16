@@ -94,7 +94,7 @@ public class SistemaHospital extends JFrame {
         add(new JLabel("DNI Paciente *"));
         add(txtDNI);
 
-        add(new JLabel("Médico o Especialidad *"));
+        add(new JLabel("Médico*"));
         add(txtMedico);
 
         add(new JLabel("Motivo de consulta *"));
