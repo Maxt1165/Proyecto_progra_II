@@ -7,14 +7,12 @@ package proyecto_progra;
  *
  * @author LyM
  */
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import javax.swing.*;
 import java.awt.*;
 
 public class SistemaHospital extends JFrame {
-    Connection con = ConexionMySQL.getConnection();
+    Connection con;
     JPanel panelLateral, panelCentral;
     CardLayout cardLayout;
 
@@ -25,7 +23,7 @@ public class SistemaHospital extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
-
+        establecerConexion();
         // Panel lateral
         panelLateral = new JPanel();
         panelLateral.setBackground(new Color(33, 150, 243));
@@ -57,6 +55,15 @@ public class SistemaHospital extends JFrame {
         btnHistorial.addActionListener(e -> cardLayout.show(panelCentral, "historial"));
 
         setVisible(true);
+    }
+
+    void establecerConexion(){
+        try {
+            con = ConexionMySQL.getConnection();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        
     }
 
     private JPanel panelRegistro() {
