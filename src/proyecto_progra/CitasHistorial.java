@@ -20,7 +20,7 @@ public class CitasHistorial {
     private String tratamiento;
     private String observaciones;
 
-    public Historial(int idCita, String dniPaciente, LocalDate fecha, String diagnostico, String tratamiento, String observaciones) {
+    public CitasHistorial(int idCita, String dniPaciente, LocalDate fecha, String diagnostico, String tratamiento, String observaciones) {
         this.idCita = idCita;
         this.dniPaciente = dniPaciente;
         this.fecha = fecha;
