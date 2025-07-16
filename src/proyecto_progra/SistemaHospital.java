@@ -224,7 +224,6 @@ class RegistroPacientePanel extends JPanel {
         
     }
 
-<<<<<<< Updated upstream
     public void registrarPaciente(){  
         if(txtDNI.getText().trim().isEmpty() || txtNombrePac.getText().trim().isEmpty() || txtApellidoPac.getText().trim().isEmpty() || txtFechaNac.getText().trim().isEmpty() || txtDomicilio.getText().trim().isEmpty() || cbxSexo.getSelectedItem().toString().isEmpty()){
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -262,47 +261,10 @@ class RegistroPacientePanel extends JPanel {
             "No se pudo registrar al paciente",
             "Error",
             JOptionPane.ERROR_MESSAGE);
-=======
-    public void registrarPaciente(){
-       String dni = txtDNI.getText();
-        
-        if (verificarDNI(dni)) {
-            // Obtener datos de los campos de la interfaz
-            String nombre = txtNombre.getText();
-            String apellidos = txtApellidos.getText();
-            String sexo = cbSexo.getSelectedItem().toString();
-            LocalDate fechaNac = dateChooser.getDate();
-            String domicilio = txtDomicilio.getText();
-            
-            // Crear nuevo paciente
-            Paciente nuevoPaciente = new Paciente(
-                dni, 
-                nombre, 
-                apellidos, 
-                sexo, 
-                fechaNac, 
-                domicilio, 
-                LocalDate.now()
-            );
-            
-            // Validar datos antes de registrar
-            if (nuevoPaciente.validarDatos()) {
-                pacientesRegistrados.add(nuevoPaciente);
-                JOptionPane.showMessageDialog(null, "Paciente registrado con éxito!");
-                limpiarCampos();
-            } else {
-                JOptionPane.showMessageDialog(null, "Error: Datos incompletos o inválidos", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "DNI ya registrado", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
->>>>>>> Stashed changes
         }
     }
 
     public boolean verificarDNI(String dni){
-<<<<<<< Updated upstream
            // Validación básica de formato
         if (dni == null || !dni.matches("\\d{8}")) {
             return false;
@@ -328,47 +290,6 @@ class RegistroPacientePanel extends JPanel {
     }
     
  
-=======
-        // Verificar formato básico
-        if (!dni.matches("\\d{8}")) {
-            return false;
-        }
-
-        //Logica para evitar DNIs repetidos
-    for (Paciente p : pacientesRegistrados) {
-            if (p.getDni().equals(dni)) {
-                return false; // DNI ya existe
-            }
-        }
-        return true; // DNI válido y disponible
-
-    }
-}
- 
-     
-    
-        // Buscar coincidencias en pacientes registrados
-        for (Paciente p : pacientesRegistrados) {
-            if (p.getDni().equals(dni)) {
-                return false; // DNI ya existe
-            }
-        }
-        return true; // DNI válido y disponible
-    }
-    
-    private void limpiarCampos() {
-        txtDNI.setText("");
-        txtNombre.setText("");
-        txtApellidos.setText("");
-        cbSexo.setSelectedIndex(0);
-        dateChooser.setDate(null);
-        txtDomicilio.setText("");
-    }
-}
-
-
-
->>>>>>> Stashed changes
 // Panel de Registro de Médico
 class RegistroMedicoPanel extends JPanel {
     JTextField txtNombre = new JTextField();
