@@ -10,7 +10,6 @@ package proyecto_progra;
 import java.awt.*;
 import java.sql.*;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 public class SistemaHospital extends JFrame {
     Connection con;
@@ -126,7 +125,6 @@ class PanelHistorial extends JPanel {
         });
     }
 }
-
     
     public static void main(String[] args) {
         SwingUtilities.invokeLater(SistemaHospital::new);
