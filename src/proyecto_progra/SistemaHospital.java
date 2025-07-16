@@ -133,15 +133,15 @@ public class SistemaHospital extends JFrame {
 
 // Panel de Registro de Paciente
 class RegistroPacientePanel extends JPanel {
+    JTextField txtNombrePac = new JTextField();
+    JTextField txtApellidoPac = new JTextField();
+    JTextField txtDNI = new JTextField();
+    JTextField txtFechaNac = new JTextField();
+    JTextField txtDomicilio= new JTextField();
+    JButton btnRegistrar = new JButton("Registrar");
     public RegistroPacientePanel() {
         setLayout(new GridLayout(7, 2, 10, 10));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        JTextField txtNombrePac = new JTextField();
-        JTextField txtApellidoPac = new JTextField();
-        JTextField txtDNI = new JTextField();
-        JTextField txtFechaNac = new JTextField();
-        JTextField txtDomicilio= new JTextField();
-        JButton btnRegistrar = new JButton("Registrar");
 
         add(new JLabel("Nombre *"));
         add(txtNombrePac);
@@ -163,6 +163,19 @@ class RegistroPacientePanel extends JPanel {
 
         add(new JLabel(""));
         add(btnRegistrar);
+        btnRegistrar.addActionListener(e -> registrarPaciente());
+        
+    }
+
+    public void registrarPaciente(){
+        if(verificarDNI(txtDNI.getText())){
+
+        }
+    }
+
+    public boolean verificarDNI(String dni){
+        //Logica para evitar DNIs repetidos
+        return false;
     }
 }
 
