@@ -43,7 +43,7 @@ public class SistemaHospital extends JFrame {
         panelCentral = new JPanel(cardLayout);
 
         panelCentral.add(panelRegistro(), "registro");
-        panelCentral.add(new panelCitas(), "citas");
+        panelCentral.add(new CitaRegistroPanel(), "citas");
         panelCentral.add(panelHistorial(), "historial");
 
         add(panelCentral, BorderLayout.CENTER);
