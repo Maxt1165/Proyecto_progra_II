@@ -198,7 +198,7 @@ class RegistroPacientePanel extends JPanel {
         Date sqlFechaNac = Date.valueOf(fechaNac);
         Date sqlFechaReg = Date.valueOf(LocalDate.now());
         boolean e = false;
-        if(verificarDNI(txtDNI.getText())){
+        if(!verificarDNI(txtDNI.getText())){
             Paciente p = new Paciente(
             txtDNI.getText().trim(), 
             txtNombrePac.getText().trim(), 
@@ -267,16 +267,16 @@ class RegistroMedicoPanel extends JPanel {
                 return;
             }
 
-            if (verificarDNI(dni)) {
-                JOptionPane.showMessageDialog(this, "El DNI ya está registrado para otro médico.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
+            Medico medico;
+            boolean e = false;
+
+            if (!verificarDNI(dni)) {
+                medico = new Medico(dni, nombre, apellidos, especialidad);
+                e = MedicoDAO.insertarMedico(medico);
             }
+            
 
-            String apellidos = apellidoPat + " " + apellidoMat;
-            Medico medico = new Medico(dni, nombre, apellidos, especialidad);
-            boolean exito = MedicoDAO.insertarMedico(medico);
-
-            if (exito) {
+            if (e) {
                 JOptionPane.showMessageDialog(this, "Médico registrado exitosamente.");
             } else {
                 JOptionPane.showMessageDialog(this, "No se pudo registrar al médico.", "Error", JOptionPane.ERROR_MESSAGE);
