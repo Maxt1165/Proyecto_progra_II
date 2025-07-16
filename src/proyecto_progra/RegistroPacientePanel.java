@@ -95,8 +95,7 @@ public class RegistroPacientePanel extends JPanel {
         
         // Verificar en base de datos
         try (Connection conn = ConexionMySQL.getConnection()) {
-            String sql = "SELECT COUNT(*) FROM Pacientes WHERE dni = ?";
-            
+            String sql = "SELECT COUNT(*) FROM Pacientes WHERE dni = ?";           
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, dni);  
                 try (ResultSet rs = stmt.executeQuery()) {
