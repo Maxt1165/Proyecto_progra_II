@@ -50,7 +50,7 @@ public class SistemaHospital extends JFrame {
         panelCentral = new JPanel(cardLayout);
 
         panelCentral.add(panelRegistro(), "registro");
-        panelCentral.add(panelCitas(), "citas");
+        panelCentral.add(new panelCitas(), "citas");
         panelCentral.add(panelHistorial(), "historial");
 
         add(panelCentral, BorderLayout.CENTER);
@@ -82,65 +82,37 @@ public class SistemaHospital extends JFrame {
         return panel;
     }
 
-    private JPanel panelCitas() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(6, 2, 10, 10));
-        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-
+    class panelCitas extends JPanel {
+        
         JTextField txtDNI = new JTextField();
         JTextField txtMedico = new JTextField();
         JTextField txtMotivo = new JTextField();
+        public panelCitas(){
+        setLayout(new GridLayout(6, 2, 10, 10));
+        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
 
         JButton btnHorarioAuto = new JButton("Horario Automático");
         JButton btnElegirHorario = new JButton("Elegir Horario");
         JButton btnAgendar = new JButton("Agendar Cita");
 
-        panel.add(new JLabel("DNI Paciente *"));
-        panel.add(txtDNI);
+        add(new JLabel("DNI Paciente *"));
+        add(txtDNI);
 
-        panel.add(new JLabel("Médico o Especialidad *"));
-        panel.add(txtMedico);
+        add(new JLabel("Médico o Especialidad *"));
+        add(txtMedico);
 
-        panel.add(new JLabel("Motivo de consulta *"));
-        panel.add(txtMotivo);
+        add(new JLabel("Motivo de consulta *"));
+        add(txtMotivo);
 
-        panel.add(btnHorarioAuto);
-        panel.add(btnElegirHorario);
+        add(btnHorarioAuto);
+        add(btnElegirHorario);
 
-        panel.add(new JLabel(""));
-        panel.add(btnAgendar);
+        add(new JLabel(""));
+        add(btnAgendar);
+        }
 
-        return panel;
-    }
-
-    private JPanel panelHistorial() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-
-        JTextField txtBuscarDNI = new JTextField();
-        JButton btnBuscar = new JButton("Buscar Historial");
-
-        JTabbedPane tabsHistorial = new JTabbedPane();
-        JTextArea historialCitas = new JTextArea("Aquí se muestran las citas...");
-        JTextArea historialClinico = new JTextArea("Aquí se muestran los registros clínicos...");
-        JButton btnAñadir = new JButton("Añadir Registro Clínico");
-
-        tabsHistorial.add("Historial de Citas", new JScrollPane(historialCitas));
-        tabsHistorial.add("Historial Clínico", new JScrollPane(historialClinico));
-
-        JPanel topPanel = new JPanel(new BorderLayout());
-        topPanel.add(new JLabel("DNI del paciente:"), BorderLayout.WEST);
-        topPanel.add(txtBuscarDNI, BorderLayout.CENTER);
-        topPanel.add(btnBuscar, BorderLayout.EAST);
-
-        panel.add(topPanel, BorderLayout.NORTH);
-        panel.add(tabsHistorial, BorderLayout.CENTER);
-        panel.add(btnAñadir, BorderLayout.SOUTH);
-
-        return panel;
-    }
-
-    public void registrarCita() {
+        public void registrarCita() {
         String dniPaciente = txtDNI.getText().trim();
         String dniMedico = txtMedico.getText().trim();
         String motivo = txtMotivo.getText().trim();
@@ -181,6 +153,36 @@ public class SistemaHospital extends JFrame {
         }
     }
 
+    }
+
+    private JPanel panelHistorial() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+
+        JTextField txtBuscarDNI = new JTextField();
+        JButton btnBuscar = new JButton("Buscar Historial");
+
+        JTabbedPane tabsHistorial = new JTabbedPane();
+        JTextArea historialCitas = new JTextArea("Aquí se muestran las citas...");
+        JTextArea historialClinico = new JTextArea("Aquí se muestran los registros clínicos...");
+        JButton btnAñadir = new JButton("Añadir Registro Clínico");
+
+        tabsHistorial.add("Historial de Citas", new JScrollPane(historialCitas));
+        tabsHistorial.add("Historial Clínico", new JScrollPane(historialClinico));
+
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.add(new JLabel("DNI del paciente:"), BorderLayout.WEST);
+        topPanel.add(txtBuscarDNI, BorderLayout.CENTER);
+        topPanel.add(btnBuscar, BorderLayout.EAST);
+
+        panel.add(topPanel, BorderLayout.NORTH);
+        panel.add(tabsHistorial, BorderLayout.CENTER);
+        panel.add(btnAñadir, BorderLayout.SOUTH);
+
+        return panel;
+    }
+
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(SistemaHospital::new);
     }
