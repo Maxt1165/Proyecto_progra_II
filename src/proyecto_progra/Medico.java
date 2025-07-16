@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package proyecto_progra;
-import java.util.List;
-
 /**
  *
  * @author maoao
