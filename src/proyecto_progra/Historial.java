@@ -38,7 +38,7 @@ public class Historial {
             JTable tabla;
             DefaultTableModel modelo;
 
-    public void Obtenerhistorial(int dniPaciente) {
+    public JScrollPane Obtenerhistorial(int dniPaciente) {
     final String SQL = "{call sp_HistorialPorPaciente(?)}";  // Sintaxis estándar
     
     try (Connection conn = ConexionMySQL.getConnection();
@@ -60,17 +60,15 @@ public class Historial {
                 };
                 modelo.addRow(fila);
             }          }
+            tabla = new JTable(modelo);
+                return new JScrollPane(tabla);
         }
         // Tabla
-                tabla = new JTable(modelo);
-                JScrollPane scroll = new JScrollPane(tabla);
-                
-        
-    } catch (SQLException e) {
-        System.err.println("Error al insertar paciente: " + e.getMessage());
-        throw new RuntimeException("Error en procedimiento almacenado", e);
+        catch (SQLException e) {
+            System.err.println("Error al insertar paciente: " + e.getMessage());
+            throw new RuntimeException("Error en procedimiento almacenado", e);
+        }
     }
-
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
 
     // Getters y setters...

@@ -78,7 +78,7 @@ private JPanel crearPanelConsultaCitasDNI() {
         
         try {
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            ResultSet rs = st.executeQuery("sql");
             while(rs.next()){
                 Object[] fila = {rs.getString("DniPac"), rs.getString("DniMed"), rs.getString("FechaHora"), rs.getString("Estado"), rs.getString("Motivo")};
                 model.addRow(fila);
