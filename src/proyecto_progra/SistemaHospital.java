@@ -8,11 +8,7 @@ package proyecto_progra;
  * @author LyM
  */
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -45,7 +41,6 @@ public class SistemaHospital extends JFrame {
 
         add(panelLateral, BorderLayout.WEST);
 
-        // Panel central con CardLayout
         cardLayout = new CardLayout();
         panelCentral = new JPanel(cardLayout);
 
@@ -132,15 +127,14 @@ public class SistemaHospital extends JFrame {
             return;
         }
 
-        // Obtener fecha y hora actual como "automática"
-        LocalDateTime ahora = LocalDateTime.now().plusHours(1); // por ejemplo: cita para dentro de 1 hora
-        Timestamp fechaHoraSQL = Timestamp.valueOf(ahora); // convierte a formato compatible con MySQL
+        LocalDateTime ahora = LocalDateTime.now().plusHours(1); 
+        Timestamp fechaHoraSQL = Timestamp.valueOf(ahora); 
 
         Cita cita = new Cita(
             dniPaciente,
             dniMedico,
             fechaHoraSQL,
-            0, // estado: pendiente
+            0, 
             motivo
         );
 
@@ -181,7 +175,6 @@ public class SistemaHospital extends JFrame {
 
         return panel;
     }
-
     
     public static void main(String[] args) {
         SwingUtilities.invokeLater(SistemaHospital::new);
