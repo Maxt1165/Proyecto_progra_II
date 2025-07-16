@@ -1,0 +1,122 @@
+package proyecto_progra;
+
+import java.awt.GridLayout;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class RegistroPacientePanel extends JPanel {
+    JTextField txtNombrePac = new JTextField();
+    JTextField txtApellidoPac = new JTextField();
+    JTextField txtDNI = new JTextField();
+    JTextField txtFechaNac = new JTextField();
+    JTextField txtDomicilio= new JTextField();
+    JButton btnRegistrar = new JButton("Registrar");
+    JComboBox cbxSexo = new JComboBox<>(new String[]{"Masculino", "Femenino"});
+
+    public RegistroPacientePanel() {
+        setLayout(new GridLayout(7, 2, 10, 10));
+        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        add(new JLabel("Nombre *"));
+        add(txtNombrePac);
+
+        add(new JLabel("Apellidos *"));
+        add(txtApellidoPac);
+
+        add(new JLabel("DNI *"));
+        add(txtDNI);
+
+        add(new JLabel("Sexo *"));
+        add(cbxSexo);
+
+        add(new JLabel("Fecha de Nacimiento *"));
+        add(txtFechaNac);
+
+        add(new JLabel("Domicilio *"));
+        add(txtDomicilio);
+
+        add(new JLabel(""));
+        add(btnRegistrar);
+        btnRegistrar.addActionListener(e -> registrarPaciente());
+        
+    }
+
+    public void registrarPaciente(){  
+        if(txtDNI.getText().trim().isEmpty() || txtNombrePac.getText().trim().isEmpty() || txtApellidoPac.getText().trim().isEmpty() || txtFechaNac.getText().trim().isEmpty() || txtDomicilio.getText().trim().isEmpty() || cbxSexo.getSelectedItem().toString().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        LocalDate fechaNac;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            fechaNac = LocalDate.parse(txtFechaNac.getText().trim(), formatter);
+        } catch (DateTimeParseException ex) {
+            JOptionPane.showMessageDialog(this, "La fecha de nacimiento debe tener el formato AAAA-MM-DD.", "Formato de fecha inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Date sqlFechaNac = Date.valueOf(fechaNac);
+        Date sqlFechaReg = Date.valueOf(LocalDate.now());
+        boolean e = false;
+ 
+        if(!verificarDNI(txtDNI.getText())){
+            Paciente p = new Paciente(
+            txtDNI.getText().trim(), 
+            txtNombrePac.getText().trim(), 
+            txtApellidoPac.getText().trim(), 
+            cbxSexo.getSelectedItem().toString(),
+            sqlFechaNac, 
+            txtDomicilio.getText().trim(),
+            sqlFechaReg);
+            e = PacienteDAO.insertarPaciente(p);
+        }
+        if (e) {
+            JOptionPane.showMessageDialog(this, "Paciente registrado");
+        } else {
+            JOptionPane.showMessageDialog(this,
+            "No se pudo registrar al paciente",
+            "Error",
+            JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public boolean verificarDNI(String dni){
+           // Validación básica de formato
+        if (dni == null || !dni.matches("\\d{8}")) {
+            return false;
+        }
+        
+        // Verificar en base de datos
+        try (Connection conn = ConexionMySQL.getConnection()) {
+            String sql = "SELECT COUNT(*) FROM pacientes WHERE dni = ?";
+            
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, dni);  
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        return rs.getInt(1) == 0; // Si no hay registros, el DNI es válido
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al verificar DNI: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+        return false;
+    } 
+}
