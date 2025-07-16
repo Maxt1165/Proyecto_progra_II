@@ -46,14 +46,23 @@ public class CitasHistorial {
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
          //Si devuelve un ResultSet
         try (ResultSet rs = stmt.getResultSet()) {
+            String step;
+            String ste;
             while (rs != null && rs.next()) {
+                ste = rs.getString("Estado");
+                
+                if(ste.equals("1")){
+                    step = "Completado";
+                } else {
+                    step = "Pendiente";
+                }
             Object[] fila = {
                     rs.getString("Nombre Paciente"),
                     rs.getString("Apellido Paciente"),
                     rs.getString("Nombre Medico"),
                     rs.getString("Apellido Medico"),
                     rs.getString("FechaHora"),
-                    rs.getString("Estado"),
+
                     rs.getString("Motivo")
                 };
                 modelo.addRow(fila);
