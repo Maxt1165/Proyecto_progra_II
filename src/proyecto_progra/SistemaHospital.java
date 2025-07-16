@@ -7,11 +7,14 @@ package proyecto_progra;
  *
  * @author LyM
  */
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.swing.*;
 import java.awt.*;
 
 public class SistemaHospital extends JFrame {
-
+    Connection con = ConexionMySQL.getConnection();
     JPanel panelLateral, panelCentral;
     CardLayout cardLayout;
 
