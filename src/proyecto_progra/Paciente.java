@@ -4,11 +4,11 @@
  */
 package proyecto_progra;
 
+import java.sql.Date;
 /**
  *
  * @author LESLY MUÑOZ
  */
-import java.time.LocalDate;
 import java.util.List;
 
 public class Paciente {
@@ -16,11 +16,11 @@ public class Paciente {
     private String nombre;
     private String apellidos;
     private String sexo;
-    private LocalDate fechaNacimiento;
+    private Date fechaNacimiento;
     private String domicilio;
-    private LocalDate fechaRegistro;
+    private Date fechaRegistro;
 
-    public Paciente(String dni, String nombre, String apellidos, String sexo, LocalDate fechaNacimiento, String domicilio, LocalDate fechaRegistro) {
+    public Paciente(String dni, String nombre, String apellidos, String sexo, Date fechaNacimiento, String domicilio, Date fechaRegistro) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -72,10 +72,10 @@ public class Paciente {
         this.sexo = sexo;
     }
 
-    public LocalDate getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -86,10 +86,10 @@ public class Paciente {
         this.domicilio = domicilio;
     }
 
-    public LocalDate getFechaRegistro() {
+    public Date getFechaRegistro() {
         return fechaRegistro;
     }
-    public void setFechaRegistro(LocalDate fechaRegistro) {
+    public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 
