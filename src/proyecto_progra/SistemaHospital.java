@@ -15,6 +15,7 @@ public class SistemaHospital extends JFrame {
     JPanel panelLateral, panelCentral;
     CardLayout cardLayout;
 
+    @SuppressWarnings("unused")
     public SistemaHospital() {
         setTitle("Sistema de Gestión de Hospitales");
         setSize(1000, 600);
