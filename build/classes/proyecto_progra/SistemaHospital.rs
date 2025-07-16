@@ -1,0 +1,3 @@
+proyecto_progra.SistemaHospital
+proyecto_progra.RegistroMedicoPanel
+proyecto_progra.RegistroPacientePanel
