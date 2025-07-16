@@ -10,6 +10,7 @@ package proyecto_progra;
 import java.awt.*;
 import java.sql.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class SistemaHospital extends JFrame {
     Connection con;
@@ -62,6 +63,32 @@ public class SistemaHospital extends JFrame {
         } catch (Exception e) {
             System.out.println("Error de conexión: " + e.getMessage());
         }  
+    }
+
+private JPanel crearPanelConsultaCitasDNI() {
+        String sql;
+        JPanel jpan = new JPanel();
+        DefaultTableModel model = new DefaultTableModel();
+        JTable tablaPersonas = new JTable(model);
+        model.addColumn("Dni Paciente");
+        model.addColumn("Direccion");
+        model.addColumn("Vivienda");
+        model.addColumn("Vivienda");
+        model.addColumn("Vivienda");
+        
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                Object[] fila = {rs.getString("DniPac"), rs.getString("DniMed"), rs.getString("FechaHora"), rs.getString("Estado"), rs.getString("Motivo")};
+                model.addRow(fila);
+            }
+        } catch (SQLException ex) {
+            jpan.add(new JLabel("No se pudo conectar"));
+            System.out.println(ex);
+        }
+        jpan.add(new JScrollPane(tablaPersonas), BorderLayout.CENTER);
+        return jpan;
     }
 
     private JPanel panelRegistro() {
