@@ -17,8 +17,9 @@ public class PacienteDAO {
             ps.setString(3, paciente.getApellidos());
             ps.setString(4, paciente.getSexo());
             ps.setDate(5, paciente.getFechaNacimiento());
-            ps.setString(7, paciente.getDomicilio());
             ps.setDate(6, paciente.getFechaRegistro());
+            ps.setString(7, paciente.getDomicilio());
+            
 
             int filasInsertadas = ps.executeUpdate();
             return filasInsertadas > 0;
