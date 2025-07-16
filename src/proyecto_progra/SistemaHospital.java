@@ -149,6 +149,7 @@ class RegistroPacientePanel extends JPanel {
     JTextField txtFechaNac = new JTextField();
     JTextField txtDomicilio= new JTextField();
     JButton btnRegistrar = new JButton("Registrar");
+    JComboBox cbxSexo = new JComboBox<>(new String[]{"Masculino", "Femenino"});
     public RegistroPacientePanel() {
         setLayout(new GridLayout(7, 2, 10, 10));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -163,7 +164,7 @@ class RegistroPacientePanel extends JPanel {
         add(txtDNI);
 
         add(new JLabel("Sexo *"));
-        add(new JComboBox<>(new String[]{"Masculino", "Femenino"}));
+        add(cbxSexo);
 
         add(new JLabel("Fecha de Nacimiento *"));
         add(txtFechaNac);
@@ -179,7 +180,10 @@ class RegistroPacientePanel extends JPanel {
 
     public void registrarPaciente(){
         if(verificarDNI(txtDNI.getText())){
-
+            if(txtDNI.getText().trim().isEmpty() || txtNombrePac.getText().trim().isEmpty() || txtApellidoPac.getText().trim().isEmpty() || txtFechaNac.getText().trim().isEmpty() || txtDomicilio.getText().trim().isEmpty() || cbxSexo.getSelectedItem().toString().isEmpty()){
+                JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
         }
     }
 
