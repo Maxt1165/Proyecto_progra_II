@@ -65,12 +65,15 @@ public class SistemaHospital extends JFrame {
         }  
     }
 
-private JPanel crearPanelConsultaCitasDNI(String sql) {
+private JPanel crearPanelConsultaCitasDNI() {
+        String sql;
         JPanel jpan = new JPanel();
         DefaultTableModel model = new DefaultTableModel();
         JTable tablaPersonas = new JTable(model);
-        model.addColumn("Region");
+        model.addColumn("Dni Paciente");
         model.addColumn("Direccion");
+        model.addColumn("Vivienda");
+        model.addColumn("Vivienda");
         model.addColumn("Vivienda");
         
         try {
