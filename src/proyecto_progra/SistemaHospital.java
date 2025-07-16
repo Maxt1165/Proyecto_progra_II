@@ -7,9 +7,9 @@ package proyecto_progra;
  *
  * @author LyM
  */
+import java.awt.*;
 import java.sql.*;
 import javax.swing.*;
-import java.awt.*;
 
 public class SistemaHospital extends JFrame {
     Connection con;
@@ -23,6 +23,7 @@ public class SistemaHospital extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         establecerConexion();
+
         // Panel lateral
         panelLateral = new JPanel();
         panelLateral.setBackground(new Color(33, 150, 243));
@@ -59,7 +60,7 @@ public class SistemaHospital extends JFrame {
         try {
             con = ConexionMySQL.getConnection();
         } catch (Exception e) {
-            // TODO: handle exception
+            System.out.println("Error de conexión: " + e.getMessage());
         }  
     }
 
@@ -74,8 +75,6 @@ public class SistemaHospital extends JFrame {
         panel.add(pestañas, BorderLayout.CENTER);
         return panel;
     }
-
-    
 
     private JPanel panelHistorial() {
         JPanel panel = new JPanel();

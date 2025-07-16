@@ -1,8 +1,6 @@
 package proyecto_progra;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class PacienteDAO {
 
@@ -19,7 +17,6 @@ public class PacienteDAO {
             ps.setDate(6, paciente.getFechaRegistro());
             ps.setString(7, paciente.getDomicilio());
             
-
             int filasInsertadas = ps.executeUpdate();
             return filasInsertadas > 0;
 
