@@ -52,11 +52,14 @@ public class Historial {
         try (ResultSet rs = stmt.getResultSet()) {
             while (rs != null && rs.next()) {
             Object[] fila = {
-                rs.getString("Nombre"),
-                rs.getString("Direccion"),
-                rs.getString("TenenciaVivienda")};
-                //Y los agrega a la tabla
-                modelo.addRow(fila);            }
+                    rs.getString("Nombre Paciente"),
+                    rs.getString("Apellido Paciente"),
+                    rs.getString("Diagnostico Actual"),
+                    rs.getString("Tratamiento"),
+                    rs.getString("Observaciones")
+                };
+                modelo.addRow(fila);
+            }          }
         }
         // Tabla
                 tabla = new JTable(modelo);
@@ -67,7 +70,7 @@ public class Historial {
         System.err.println("Error al insertar paciente: " + e.getMessage());
         throw new RuntimeException("Error en procedimiento almacenado", e);
     }
-}
+
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
 
     // Getters y setters...
