@@ -80,7 +80,7 @@ public class SistemaHospital extends JFrame {
         JPanel panel = new JPanel(new BorderLayout());
         JTabbedPane pestañas = new JTabbedPane();
         pestañas.add("Agendar Cita", new CitaRegistroPanel());
-        pestañas.add("Modificar Cita", new CitaRegistroPanel());
+        pestañas.add("Modificar Cita", new CitaModificacionPanel());
         panel.add(pestañas, BorderLayout.CENTER);
         return panel;
     }
