@@ -49,7 +49,7 @@ public  class RegistroMedicoPanel extends JPanel {
             Medico medico;
             boolean e = false;
 
-            if (!verificarDNI(dni)) {
+            if (verificarDNI(dni)) {
                 medico = new Medico(dni, nombre, apellidos, especialidad);
                 e = MedicoDAO.insertarMedico(medico);
             }
