@@ -45,7 +45,7 @@ public class SistemaHospital extends JFrame {
         panelCentral = new JPanel(cardLayout);
 
         panelCentral.add(panelRegistro(), "registro");
-        panelCentral.add(new CitaRegistroPanel(), "citas");
+        panelCentral.add(panelRegistroCitas(), "citas");
         panelCentral.add(new PanelHistorial(), "historial");
 
         add(panelCentral, BorderLayout.CENTER);
@@ -142,6 +142,14 @@ class PanelHistorial extends JPanel {
             scrollClinico.setViewportView(tablaClinico);
         });
     }
+    private JPanel panelRegistroCitas() {
+    JPanel panel = new JPanel(new BorderLayout());
+    JTabbedPane pestañas = new JTabbedPane();
+    pestañas.add("Agendar Cita", new CitaRegistroPanel());
+    pestañas.add("Modificar Cita", new CitaRegistroPanel());
+    panel.add(pestañas, BorderLayout.CENTER);
+    return panel;
+}
 }
 
     
