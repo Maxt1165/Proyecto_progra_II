@@ -61,7 +61,7 @@ class CitaRegistroPanel extends JPanel {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT DNI, Nombre, Apellido FROM Medicos")) {
             while (rs.next()) {
-                cmbMedicos.addItem(rs.getString("DNI") + " - " + rs.getString("Nombre") + " " + rs.getString("Apellido"));
+                cmbMedicos.addItem(rs.getString("DNI"));
             }
         } catch (SQLException ex) {
             System.err.println("Error al cargar médicos: " + ex.getMessage());
