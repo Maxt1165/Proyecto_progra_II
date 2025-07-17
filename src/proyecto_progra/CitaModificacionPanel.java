@@ -15,7 +15,6 @@ public class CitaModificacionPanel extends JPanel {
     private JTextField txtMotivo = new JTextField();
     private JComboBox<String> cmbEstado = new JComboBox<>(new String[]{"Pendiente", "Completada", "Cancelada"});
 
-    @SuppressWarnings("unused")
     public CitaModificacionPanel() {
         setLayout(new BorderLayout(10, 10));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
