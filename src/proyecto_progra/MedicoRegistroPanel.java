@@ -21,6 +21,7 @@ public  class MedicoRegistroPanel extends JPanel {
     JTextField txtNombre = new JTextField();
     JTextField txtApellidos = new JTextField();       
     JTextField txtDNI = new JTextField();
+    @SuppressWarnings("rawtypes")
     JComboBox cbxEspecialidad = new JComboBox<>(especialidades);
     JButton btnRegistrar = new JButton("Registrar");
     @SuppressWarnings("unused")

@@ -6,8 +6,19 @@ import java.time.LocalDateTime;
 import javax.swing.*;
 
 class CitaRegistroPanel extends JPanel {
+    String[] especialidadesLista = {
+    "Pediatría",
+    "Cardiología",
+    "Dermatología",
+    "Neurología",
+    "Ginecología",
+    "Oftalmología",
+    "Medicina General",
+    "Psiquiatría"
+};
     private JTextField txtDNI = new JTextField();
     private JComboBox<String> cmbMedicos = new JComboBox<>();
+    private JComboBox<String> cmbEspecialidades = new JComboBox<>(especialidadesLista);
     private JTextField txtMotivo = new JTextField();
     private JCheckBox chkHorarioManual = new JCheckBox("Horario Manual");
     private JTextField txtHorarioManual = new JTextField("AAAA-MM-DD HH:MM");
@@ -22,7 +33,7 @@ class CitaRegistroPanel extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // Cargar médicos en el ComboBox
-        cargarMedicos();
+        // add(cmbEspecialidades);
 
         // Componentes
         txtHorarioManual.setEnabled(false);
@@ -35,9 +46,9 @@ class CitaRegistroPanel extends JPanel {
         add(txtDNI, gbc);
 
         gbc.gridx = 0; gbc.gridy = 1;
-        add(new JLabel("Médico *"), gbc);
+        add(new JLabel("Especialidad *"), gbc);
         gbc.gridx = 1;
-        add(cmbMedicos, gbc);
+        add(cmbEspecialidades, gbc);
 
         gbc.gridx = 0; gbc.gridy = 2;
         add(new JLabel("Motivo *"), gbc);
@@ -59,7 +70,7 @@ class CitaRegistroPanel extends JPanel {
     private void cargarMedicos() {
         try (Connection conn = ConexionMySQL.getConnection();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT DNI, Nombre, Apellido FROM Medicos")) {
+             ResultSet rs = stmt.executeQuery("SELECT DNI, Nombre, Apellido FROM Medicos WHERE Especialidad = " )) {
             while (rs.next()) {
                 cmbMedicos.addItem(rs.getString("DNI"));
             }
