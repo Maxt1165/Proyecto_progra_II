@@ -68,8 +68,7 @@ public class CitaModificacionPanel extends JPanel {
             JOptionPane.showMessageDialog(this, "Error al cargar médicos: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    public void  mensajeValidarDni() {
-        String dni = txtDniPaciente.getText().trim();
+    public void  mensajeValidarDni(String dni) {
         if (!dni.matches("\\d{8}")) {
             JOptionPane.showMessageDialog(this, "DNI debe tener 8 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -77,7 +76,8 @@ public class CitaModificacionPanel extends JPanel {
     }
         
     private void buscarCitasPorDni() {
-        mensajeValidarDni();
+        String dni = txtDniPaciente.getText().trim();
+        mensajeValidarDni(dni);
 
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new String[]{"ID", "Médico", "Fecha/Hora", "Motivo", "Estado"});
@@ -144,7 +144,7 @@ public class CitaModificacionPanel extends JPanel {
 
             if(estado==1){
                 String dni = txtDniPaciente.getText().trim();
-                mensajeValidarDni();
+                mensajeValidarDni(dni);
        
                 HistorialAñadir RegistroHistorial = new HistorialAñadir(null, "Nuevo Historial Médico", true, idCita,dni);
                 RegistroHistorial.setVisible(true);
