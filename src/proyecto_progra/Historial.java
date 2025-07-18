@@ -32,7 +32,7 @@ public class Historial {
         
     public static JTable Obtenerhistorial(String dniPaciente) {
     final String SQL = "{call sp_HistorialPorPaciente(?)}";  // Sintaxis estándar
-    
+
     try (Connection conn = ConexionMySQL.getConnection();
          CallableStatement stmt = conn.prepareCall(SQL)) {
         stmt.setString(1, dniPaciente);

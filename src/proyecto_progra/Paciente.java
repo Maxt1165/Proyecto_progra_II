@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package proyecto_progra;
-
 import java.sql.Date;
 
 public class Paciente {
@@ -25,9 +24,6 @@ public class Paciente {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public boolean validarDatos() {
-        return dni != null && dni.matches("\\d{8}") && !nombre.isBlank() && !apellidos.isBlank();
-    }
 
     public static boolean validarDNI(String DNI) {
         return (DNI != null && DNI.matches("\\d{8}"));
