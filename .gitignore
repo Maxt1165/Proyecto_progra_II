@@ -7,3 +7,7 @@ build/classes/proyecto_progra/PanelHistorial.class
 nbproject/private/private.properties
 nbproject/private/private.xml
 *.class
+build/classes/proyecto_progra/Cita.class
+build/classes/proyecto_progra/CitaModificacionPanel.class
+build/classes/proyecto_progra/Paciente.class
+build/classes/proyecto_progra/PacienteRegistroPanel.class
