@@ -23,7 +23,10 @@ class PanelHistorial extends JPanel {
         tabsHistorial.addTab("Historial Clínico", scrollClinico);
         add(tabsHistorial, BorderLayout.CENTER);
 
-        btnBuscar.addActionListener(e -> {
+        btnBuscar.addActionListener(e -> busqueda());
+    }
+    
+    private void busqueda () {
             String dni = txtBuscarDNI.getText().trim();
             JTable tablaCitas = CitasHistorial.Obtenerhistorial(dni);
             JTable tablaClinico = Historial.Obtenerhistorial(dni);
@@ -31,6 +34,5 @@ class PanelHistorial extends JPanel {
             // Actualizar scroll panes
             scrollCitas.setViewportView(tablaCitas);
             scrollClinico.setViewportView(tablaClinico);
-        });
-    }
+        }
 }
