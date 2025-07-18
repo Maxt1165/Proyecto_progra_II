@@ -73,12 +73,6 @@ public class HistorialAñadir extends JDialog {
         String tratamiento = taTratamiento.getText();
         String observaciones = taObservaciones.getText();
         
-        // Validación
-        if (diagnostico.isEmpty() || tratamiento.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Diagnóstico y Tratamiento son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
         // Confirmación antes de guardar
         int confirm = JOptionPane.showConfirmDialog(
             this,
