@@ -146,7 +146,7 @@ public class CitaModificacionPanel extends JPanel {
                     JOptionPane.showMessageDialog(this, "DNI debe tener 8 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }         
-                HistorialAñadir RegistroHistorial = new HistorialAñadir(ventanaPrincipal, "Nuevo Historial Médico", true, idCita,dni);
+                HistorialAñadir RegistroHistorial = new HistorialAñadir(null, "Nuevo Historial Médico", true, idCita,dni);
                 RegistroHistorial.setVisible(true);
 
             }
