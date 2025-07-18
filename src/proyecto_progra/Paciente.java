@@ -5,10 +5,6 @@
 package proyecto_progra;
 
 import java.sql.Date;
-/**
- *
- * @author LESLY MUÑOZ
- */
 import java.util.List;
 
 public class Paciente {
@@ -93,6 +89,20 @@ public class Paciente {
         this.fechaRegistro = fechaRegistro;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Paciente{");
+        sb.append("dni=").append(dni);
+        sb.append(", nombre=").append(nombre);
+        sb.append(", apellidos=").append(apellidos);
+        sb.append(", sexo=").append(sexo);
+        sb.append(", fechaNacimiento=").append(fechaNacimiento);
+        sb.append(", domicilio=").append(domicilio);
+        sb.append(", fechaRegistro=").append(fechaRegistro);
+        sb.append('}');
+        return sb.toString();
+    }
 }
 
 
