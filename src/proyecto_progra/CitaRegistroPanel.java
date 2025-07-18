@@ -51,16 +51,21 @@ class CitaRegistroPanel extends JPanel {
         add(cmbEspecialidades, gbc);
 
         gbc.gridx = 0; gbc.gridy = 2;
+        add(new JLabel("Médico *"), gbc);
+        gbc.gridx = 1;
+        add(cmbMedicos, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 3;
         add(new JLabel("Motivo *"), gbc);
         gbc.gridx = 1;
         add(txtMotivo, gbc);
 
-        gbc.gridx = 0; gbc.gridy = 3;
+        gbc.gridx = 0; gbc.gridy = 4;
         add(chkHorarioManual, gbc);
         gbc.gridx = 1;
         add(txtHorarioManual, gbc);
 
-        gbc.gridx = 0; gbc.gridy = 4; gbc.gridwidth = 2;
+        gbc.gridx = 0; gbc.gridy = 5; gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         add(btnAgendar, gbc);
 
