@@ -11,7 +11,7 @@ public class CitaModificacionPanel extends JPanel {
     private JTable tablaCitas = new JTable();
     private JButton btnModificar = new JButton("Modificar Cita");
     private JComboBox<String> cmbMedicos = new JComboBox<>();
-    private JTextField txtFechaHora = new JTextField();
+    private JTextField txtFechaHora = new JTextField("AAAA-MM-DD HH:MM");
     private JTextField txtMotivo = new JTextField();
     private JComboBox<String> cmbEstado = new JComboBox<>(new String[]{"Pendiente", "Completada", "Cancelada"});
 

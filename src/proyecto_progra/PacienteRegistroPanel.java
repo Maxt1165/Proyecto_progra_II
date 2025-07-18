@@ -12,7 +12,7 @@ public class PacienteRegistroPanel extends JPanel {
     JTextField txtNombrePac = new JTextField();
     JTextField txtApellidoPac = new JTextField();
     JTextField txtDNI = new JTextField();
-    JTextField txtFechaNac = new JTextField();
+    JTextField txtFechaNac = new JTextField("AAAA-MM-DD");
     JTextField txtDomicilio= new JTextField();
     JButton btnRegistrar = new JButton("Registrar");
     
