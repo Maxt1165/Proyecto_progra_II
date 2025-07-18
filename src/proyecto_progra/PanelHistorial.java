@@ -1,13 +1,12 @@
 package proyecto_progra;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 class PanelHistorial extends JPanel {
     JTextField txtBuscarDNI = new JTextField();
     JButton btnBuscar = new JButton("Buscar Historial");
     JTabbedPane tabsHistorial = new JTabbedPane();
-    JButton btnAñadir = new JButton("Añadir Registro Clínico");
 
     // Paneles para las dos pestañas
     JScrollPane scrollCitas = new JScrollPane();
@@ -28,9 +27,6 @@ class PanelHistorial extends JPanel {
         tabsHistorial.addTab("Historial de Citas", scrollCitas);
         tabsHistorial.addTab("Historial Clínico", scrollClinico);
         add(tabsHistorial, BorderLayout.CENTER);
-
-        // Botón inferior
-        add(btnAñadir, BorderLayout.SOUTH);
 
         // Acción del botón buscar
         btnBuscar.addActionListener(e -> {

@@ -26,7 +26,6 @@ public class Historial {
         this.observaciones = observaciones;
     }
 
-    // Métodos útiles
     public boolean validar() {
         return diagnostico != null && !diagnostico.isBlank();
     }
@@ -40,8 +39,7 @@ public class Historial {
         stmt.execute();
             
         DefaultTableModel modelo = new DefaultTableModel(new String[]{"Nombre Paciente", "Apellido Paciente", "Diagnóstico Actual", "Tratamiento", "Observaciones"}, 0);
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
-         //Si devuelve un ResultSet
+ 
         try (ResultSet rs = stmt.getResultSet()) {
             while (rs != null && rs.next()) {
             Object[] fila = {
@@ -52,15 +50,14 @@ public class Historial {
                     rs.getString("Observaciones")
                 };
                 modelo.addRow(fila);
-            }          }
-            //JTable tabla = new JTable(modelo);
+            }          
+        }
                 return new JTable(modelo);
         } catch (SQLException e) {
             System.err.println("Error al insertar paciente: " + e.getMessage());
             throw new RuntimeException("Error en procedimiento almacenado", e);
         }
     }
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
 
     // Getters y setters...
     public int getIdCita() {

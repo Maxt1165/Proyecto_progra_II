@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import javax.swing.*;
-   
 
 public class PacienteRegistroPanel extends JPanel {
     JTextField txtNombrePac = new JTextField();
@@ -15,11 +14,8 @@ public class PacienteRegistroPanel extends JPanel {
     JTextField txtFechaNac = new JTextField("AAAA-MM-DD");
     JTextField txtDomicilio= new JTextField();
     JButton btnRegistrar = new JButton("Registrar");
-    
-    @SuppressWarnings("rawtypes")
     JComboBox cbxSexo = new JComboBox<>(new String[]{"M", "F"});
 
-    @SuppressWarnings("unused")
     public PacienteRegistroPanel() {
         setLayout(new GridLayout(7, 2, 10, 10));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -54,7 +50,7 @@ public class PacienteRegistroPanel extends JPanel {
                 JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
+            //Fecha
             LocalDate fechaNac;
             try {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

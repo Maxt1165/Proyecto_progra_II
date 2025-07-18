@@ -24,7 +24,6 @@ public class PacienteDAO {
                 
         try (Connection conn = ConexionMySQL.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql)) {
-                
             ps.setString(1, paciente.getDni());
             ps.setString(2, paciente.getNombre());
             ps.setString(3, paciente.getApellidos());
