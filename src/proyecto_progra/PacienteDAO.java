@@ -33,7 +33,6 @@ public class PacienteDAO {
                         int filasInsertadas = ps.executeUpdate();
                             return filasInsertadas > 0;                 
                    }
-
         } catch (SQLException e) {
             System.err.println("Error al insertar paciente: " + e.getMessage());
             return false;

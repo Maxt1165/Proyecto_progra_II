@@ -92,15 +92,15 @@ public class Paciente {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Paciente{");
-        sb.append("dni=").append(dni);
-        sb.append(", nombre=").append(nombre);
-        sb.append(", apellidos=").append(apellidos);
-        sb.append(", sexo=").append(sexo);
-        sb.append(", fechaNacimiento=").append(fechaNacimiento);
-        sb.append(", domicilio=").append(domicilio);
-        sb.append(", fechaRegistro=").append(fechaRegistro);
-        sb.append('}');
+        sb.append(nombre).append(apellidos);
+        sb.append("\n");
+        sb.append("identificado con DNI: ").append(dni);
+        sb.append("\n");
+        sb.append("con sexo ").append(sexo);
+        sb.append("\n");
+        sb.append(", nacido el ").append(fechaNacimiento);
+        sb.append("\n");
+        sb.append(", domiciliado en ").append(domicilio);
         return sb.toString();
     }
 }
