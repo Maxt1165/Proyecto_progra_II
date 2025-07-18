@@ -15,7 +15,6 @@ public class CitaModificacionPanel extends JPanel {
     private JTextField txtMotivo = new JTextField();
     private JComboBox<String> cmbEstado = new JComboBox<>(new String[]{"Pendiente", "Completada", "Cancelada"});
 
-    @SuppressWarnings("unused")
     public CitaModificacionPanel() {
         setLayout(new BorderLayout(10, 10));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -136,10 +135,6 @@ public class CitaModificacionPanel extends JPanel {
             stmt.setInt(4, estado);
             stmt.setInt(5, idCita);
 
-            if (stmt.executeUpdate() > 0) {
-                JOptionPane.showMessageDialog(this, "Cita actualizada correctamente.");
-                buscarCitasPorDni(); // Refrescar tabla
-            }
             if(estado==1){
                 String dni = txtDniPaciente.getText().trim();
                 if (!dni.matches("\\d{8}")) {
@@ -149,6 +144,11 @@ public class CitaModificacionPanel extends JPanel {
                 HistorialAñadir RegistroHistorial = new HistorialAñadir(null, "Nuevo Historial Médico", true, idCita,dni);
                 RegistroHistorial.setVisible(true);
 
+            }
+            
+                if (stmt.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(this, "Cita actualizada correctamente.");
+                buscarCitasPorDni(); // Refrescar tabla
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error al modificar cita: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
