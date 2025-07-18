@@ -17,7 +17,7 @@ class CitaRegistroPanel extends JPanel {
     "Psiquiatría"
 };
     private JTextField txtDNI = new JTextField();
-    private JComboBox<String> cmbMedicos = new JComboBox<>();
+    private JComboBox<Medico> cmbMedicos = new JComboBox<>();
     private JComboBox<String> cmbEspecialidades = new JComboBox<>(especialidadesLista);
     private JTextField txtMotivo = new JTextField();
     private JCheckBox chkHorarioManual = new JCheckBox("Horario Manual");
@@ -50,6 +50,8 @@ class CitaRegistroPanel extends JPanel {
         gbc.gridx = 1;
         add(cmbEspecialidades, gbc);
 
+        cmbEspecialidades.addActionListener(e->cargarMedicos());
+
         gbc.gridx = 0; gbc.gridy = 2;
         add(new JLabel("Médico *"), gbc);
         gbc.gridx = 1;
@@ -73,11 +75,16 @@ class CitaRegistroPanel extends JPanel {
     }
 
     private void cargarMedicos() {
+            if(cmbMedicos.getItemCount()>=1){
+                cmbMedicos.removeAllItems();
+            } else {
+                
+            }
         try (Connection conn = ConexionMySQL.getConnection();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT DNI, Nombre, Apellido FROM Medicos WHERE Especialidad = " )) {
+             ResultSet rs = stmt.executeQuery("SELECT * FROM Medicos WHERE Especialidad = "+"'"+cmbEspecialidades.getSelectedItem().toString()+"'")) {
             while (rs.next()) {
-                cmbMedicos.addItem(rs.getString("DNI"));
+                cmbMedicos.addItem( new Medico(rs.getString("DNI"),rs.getString("Nombre"),rs.getString("Apellido"),rs.getString("Especialidad")));
             }
         } catch (SQLException ex) {
             System.err.println("Error al cargar médicos: " + ex.getMessage());
@@ -86,7 +93,7 @@ class CitaRegistroPanel extends JPanel {
 
     public void registrarCita() {
         String dniPaciente = txtDNI.getText().trim();
-        String dniMedico = cmbMedicos.getSelectedItem().toString();
+        String dniMedico = ((Medico) cmbMedicos.getSelectedItem()).getDni();
         String motivo = txtMotivo.getText().trim();
 
         if (dniPaciente.isEmpty() || dniMedico.isEmpty() || motivo.isEmpty()) {

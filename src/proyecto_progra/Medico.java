@@ -12,6 +12,10 @@ import java.util.List;
 public class Medico {
     private String dni;
     private String nombre;
+    @Override
+    public String toString() {
+        return nombre + " " + apellidos;
+    }
     private String apellidos;
     private String especialidad;
 
