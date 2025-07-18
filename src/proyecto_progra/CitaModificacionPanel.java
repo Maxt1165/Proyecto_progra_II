@@ -87,19 +87,23 @@ public class CitaModificacionPanel extends JPanel {
             stmt.setString(1, dni);
             ResultSet rs = stmt.executeQuery();
 
+                String estado = "Pendiente";
             while (rs.next()) {
+                if (rs.getInt("Estado")==1) {
+                    estado = "Completado";
+                }else if (rs.getInt("Estado")==2 ){  
+                    estado = "Cancelado";
+                }
                 model.addRow(new Object[]{
                     rs.getInt("idCita"),
                     rs.getString("Nombre") + " " + rs.getString("Apellido"),
                     rs.getTimestamp("FechaHora"),
                     rs.getString("Motivo"),
-                    rs.getInt("Estado") == 0 ? "Pendiente" : "Completada"
-                });
+                    estado});
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error al buscar citas: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-
         tablaCitas.setModel(model);
     }
 
@@ -143,10 +147,11 @@ public class CitaModificacionPanel extends JPanel {
                 }         
                 HistorialAñadir RegistroHistorial = new HistorialAñadir(null, "Nuevo Historial Médico", true, idCita,dni);
                 RegistroHistorial.setVisible(true);
-
+            }else if (estado==2){
+                JOptionPane.showMessageDialog(this, "Cita cancelada exitosamente");
             }
-            
-                if (stmt.executeUpdate() > 0) {
+
+            if (stmt.executeUpdate() > 0) {
                 JOptionPane.showMessageDialog(this, "Cita actualizada correctamente.");
                 buscarCitasPorDni(); // Refrescar tabla
             }

@@ -53,7 +53,6 @@ public class SistemaHospital extends JFrame {
         btnRegistro.addActionListener(e -> cardLayout.show(panelCentral, "registro"));
         btnCitas.addActionListener(e -> cardLayout.show(panelCentral, "citas"));
         btnHistorial.addActionListener(e -> cardLayout.show(panelCentral, "historial"));
-
         setVisible(true);
     }
 
@@ -86,8 +85,6 @@ public class SistemaHospital extends JFrame {
         return panel;
     }
 
-
-    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(SistemaHospital::new);
     }

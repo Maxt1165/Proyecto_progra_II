@@ -70,7 +70,6 @@ public class CitasHistorial {
             throw new RuntimeException("Error en procedimiento almacenado", e);
         }
     }
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
 
     // Getters y setters...
     public int getIdCita() {

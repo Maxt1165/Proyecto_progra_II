@@ -39,7 +39,6 @@ public class Historial {
         stmt.execute();
             
         DefaultTableModel modelo = new DefaultTableModel(new String[]{"Nombre Paciente", "Apellido Paciente", "Diagnóstico Actual", "Tratamiento", "Observaciones"}, 0);
- 
         try (ResultSet rs = stmt.getResultSet()) {
             while (rs != null && rs.next()) {
             Object[] fila = {

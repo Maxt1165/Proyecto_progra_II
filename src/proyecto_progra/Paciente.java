@@ -31,12 +31,10 @@ public class Paciente {
     }
 
     public List<Cita> obtenerCitas() {
-        // Lógica para recuperar citas desde la base de datos
         return null;
     }
 
     public List<Historial> obtenerHistorialClinico() {
-        // Lógica para recuperar historial desde la base de datos
         return null;
     }
     

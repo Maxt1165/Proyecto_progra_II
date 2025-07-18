@@ -79,10 +79,9 @@ public class PacienteRegistroPanel extends JPanel {
                 JOptionPane.showMessageDialog(this, "Paciente registrado");
             }
         } catch (Exception ex) {
-            ex.printStackTrace(); // imprime error en consola
+            ex.printStackTrace();  
             JOptionPane.showMessageDialog(this, "Error inesperado: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-
     }
 
     public boolean verificarDNI(String dni){
