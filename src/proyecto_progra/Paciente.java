@@ -5,7 +5,6 @@
 package proyecto_progra;
 
 import java.sql.Date;
-import java.util.List;
 
 public class Paciente {
     private String dni;
@@ -30,12 +29,8 @@ public class Paciente {
         return dni != null && dni.matches("\\d{8}") && !nombre.isBlank() && !apellidos.isBlank();
     }
 
-    public List<Cita> obtenerCitas() {
-        return null;
-    }
-
-    public List<Historial> obtenerHistorialClinico() {
-        return null;
+    public static boolean validarDNI(String DNI) {
+        return (DNI != null && DNI.matches("\\d{8}"));
     }
     
     public String getDni() {

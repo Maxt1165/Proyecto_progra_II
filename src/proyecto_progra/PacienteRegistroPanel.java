@@ -86,9 +86,7 @@ public class PacienteRegistroPanel extends JPanel {
 
     public boolean verificarDNI(String dni){
            // Validación básica de formato
-        if (dni == null || !dni.matches("\\d{8}")) {
-            return false;
-        }
+        Paciente.validarDNI(dni);
         
         // Verificar en base de datos
         try (Connection conn = ConexionMySQL.getConnection()) {

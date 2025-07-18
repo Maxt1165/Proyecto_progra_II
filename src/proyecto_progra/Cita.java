@@ -25,14 +25,6 @@ public class Cita {
         this.motivo = motivo;
     }
 
-    public void marcarComoCompletada() {
-        this.estado = 1;
-    }
-
-    public void cancelar() {
-        this.estado = 0;
-    }
-
     public String getDniPaciente() {
         return dniPaciente;
     }
