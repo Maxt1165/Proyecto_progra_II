@@ -25,11 +25,6 @@ public class CitasHistorial {
         this.tratamiento = tratamiento;
         this.observaciones = observaciones;
     }
-
-    // Métodos útiles
-    public boolean validar() {
-        return diagnostico != null && !diagnostico.isBlank();
-    }
         
     public static JTable Obtenerhistorial(String dniPaciente) {
     final String SQL = "{call sp_CitasPorPaciente(?)}"; 
