@@ -81,11 +81,6 @@ public class PacienteRegistroPanel extends JPanel {
             }
             if (e) {
                 JOptionPane.showMessageDialog(this, "Paciente registrado");
-            } else {
-                JOptionPane.showMessageDialog(this,
-                "No se pudo registrar al paciente",
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
             ex.printStackTrace(); // imprime error en consola

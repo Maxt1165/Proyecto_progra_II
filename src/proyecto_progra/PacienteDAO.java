@@ -8,19 +8,19 @@ public class PacienteDAO {
     public static boolean insertarPaciente(Paciente paciente) {
         String sql = "INSERT INTO Pacientes (DNI, Nombre, Apellido, Sexo, FechaNac, FechaReg, Domicilio) VALUES (?, ?, ?, ?, ?, ?, ?)";
         
-        //Validación con el usuario
-           int respuesta = JOptionPane.showConfirmDialog(
-                        null,
-                        "¿Está seguro que desea ingresar al paciente: " + paciente.toString(),
-                        "Confirmar cambio",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE
-                    );
-                    
-                    if (respuesta != JOptionPane.YES_OPTION) {
-                        JOptionPane.showMessageDialog(null, "Operaci+on cancelada");
-                        return false;
-                    }
+    //Validación con el usuario
+        int respuesta = JOptionPane.showConfirmDialog(
+                    null,
+                    "¿Está seguro que desea ingresar al paciente: " + paciente.toString(),
+                    "Confirmar cambio",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
+                );
+                
+        if (respuesta != JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(null, "Operacion cancelada");
+            return false;
+        }
                 
         try (Connection conn = ConexionMySQL.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql)) {
