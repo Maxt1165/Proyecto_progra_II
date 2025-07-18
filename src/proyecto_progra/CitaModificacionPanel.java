@@ -141,7 +141,14 @@ public class CitaModificacionPanel extends JPanel {
                 buscarCitasPorDni(); // Refrescar tabla
             }
             if(estado==1){
-                
+                String dni = txtDniPaciente.getText().trim();
+                if (!dni.matches("\\d{8}")) {
+                    JOptionPane.showMessageDialog(this, "DNI debe tener 8 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }         
+                HistorialAñadir RegistroHistorial = new HistorialAñadir(ventanaPrincipal, "Nuevo Historial Médico", true, idCita,dni);
+                RegistroHistorial.setVisible(true);
+
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error al modificar cita: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

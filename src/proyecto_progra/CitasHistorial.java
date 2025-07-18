@@ -40,7 +40,6 @@ public class CitasHistorial {
         stmt.execute();
             
         DefaultTableModel modelo = new DefaultTableModel(new String[]{"Nombre Paciente", "Apellido Paciente", "Nombre Medico", "Apellido Medico", "Fecha y Hora", "Estado", "Motivo"}, 0);
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
          //Si devuelve un ResultSet
         try (ResultSet rs = stmt.getResultSet()) {
             String step;

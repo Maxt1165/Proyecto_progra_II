@@ -67,8 +67,8 @@ public class CitaDAO {
 
     public static boolean insertarHistorial(int idCita, String dniPaciente, String diagnostico, 
                                           String tratamiento, String observaciones) {
-        String sql = "INSERT INTO Historial (idCita, dniPaciente, fecha, diagnostico, tratamiento, observaciones) " +
-                     "VALUES (?, ?, CURRENT_DATE(), ?, ?, ?)";
+        String sql = "CALL AñadirHistorial(?, ?, ?, ?, ?)";
+        
         try (Connection conn = ConexionMySQL.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             
