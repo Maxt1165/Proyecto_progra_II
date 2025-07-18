@@ -4,7 +4,6 @@ import java.awt.*;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 import javax.swing.*;
 
 class CitaRegistroPanel extends JPanel {
@@ -93,6 +92,7 @@ class CitaRegistroPanel extends JPanel {
         }
     }
 
+ 
     public void registrarCita() {
         String dniPaciente = txtDNI.getText().trim();
         String dniMedico = ((Medico) cmbMedicos.getSelectedItem()).getDni();
@@ -127,16 +127,27 @@ class CitaRegistroPanel extends JPanel {
         fechaHoraSQL = Timestamp.valueOf(LocalDateTime.now().plusHours(1));
     }
 
-    // Validar horario (8:00 - 20:00)
-    int hora = fechaHoraSQL.toLocalDateTime().getHour();
-    if (hora < 8 || hora >= 20) {
-        JOptionPane.showMessageDialog(
-            this, 
-            "Las citas solo pueden agendarse entre 8:00 y 20:00 horas.", 
-            "Error", 
-            JOptionPane.ERROR_MESSAGE
-        );
-        return;
+
+    LocalDateTime ahora = LocalDateTime.now();
+    int horaActual = ahora.getHour();
+    // Validación y ajuste de horario automático
+    if (horaActual >= 20 || horaActual < 8) {
+        // Si es de noche, programar para mañana a las 8am
+        LocalDateTime primerHorarioValido = ahora.plusDays(1)
+                                          .withHour(8)
+                                          .withMinute(0)
+                                          .withSecond(0);
+        fechaHoraSQL = Timestamp.valueOf(primerHorarioValido);
+        
+        // Mostrar confirmación al usuario
+        String mensaje = "El horario actual no es válido. ¿Desea agendar para " 
+                       + primerHorarioValido.toLocalDate() + " a las 8:00 am?";
+        int respuesta = JOptionPane.showConfirmDialog(this, mensaje, 
+                                   "Ajuste de Horario", JOptionPane.YES_NO_OPTION);
+        
+        if (respuesta != JOptionPane.YES_OPTION) {
+            return; // El usuario canceló
+        }
     }
 
     Cita cita = new Cita(dniPaciente, dniMedico, fechaHoraSQL, 0, motivo);
