@@ -131,7 +131,7 @@ public class CitaModificacionPanel extends JPanel {
              PreparedStatement stmt = conn.prepareStatement(
                      "UPDATE Citas SET DniMed = ?, FechaHora = ?, Motivo = ?, Estado = ? WHERE idCita = ?")) {
             stmt.setString(1, dniMedico);
-            stmt.setTimestamp(2, Timestamp.valueOf(fechaHora.replace(" ", "T") + ":00"));
+            stmt.setTimestamp(2, Timestamp.valueOf(fechaHora));
             stmt.setString(3, motivo);
             stmt.setInt(4, estado);
             stmt.setInt(5, idCita);
