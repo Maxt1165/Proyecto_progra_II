@@ -7,10 +7,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.*;
 public  class MedicoRegistroPanel extends JPanel {
+    String[] especialidades = {
+    "Pediatría",
+    "Cardiología",
+    "Dermatología",
+    "Neurología",
+    "Ginecología",
+    "Oftalmología",
+    "Medicina General",
+    "Psiquiatría"
+};
+
     JTextField txtNombre = new JTextField();
     JTextField txtApellidos = new JTextField();       
     JTextField txtDNI = new JTextField();
-    JTextField txtEspecialidad = new JTextField();
+    JComboBox cbxEspecialidad = new JComboBox<>(especialidades);
     JButton btnRegistrar = new JButton("Registrar");
     @SuppressWarnings("unused")
     public MedicoRegistroPanel() {
@@ -28,7 +39,7 @@ public  class MedicoRegistroPanel extends JPanel {
         add(txtDNI);
 
         add(new JLabel("Especialidad *"));
-        add(txtEspecialidad);
+        add(cbxEspecialidad);
 
         add(new JLabel("")); // Espacio vacío
         add(btnRegistrar);
@@ -40,7 +51,7 @@ public  class MedicoRegistroPanel extends JPanel {
             String dni = txtDNI.getText().trim();
             String nombre = txtNombre.getText().trim();
             String apellidos = txtApellidos.getText().trim();
-            String especialidad = txtEspecialidad.getText().trim();
+            String especialidad = cbxEspecialidad.getSelectedItem().toString();
 
             if (dni.isEmpty() || nombre.isEmpty() || apellidos.isEmpty() || especialidad.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
