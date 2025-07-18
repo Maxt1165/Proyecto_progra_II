@@ -3,6 +3,8 @@ package proyecto_progra;
 import java.awt.*;
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.swing.*;
 
 class CitaRegistroPanel extends JPanel {
@@ -111,23 +113,40 @@ class CitaRegistroPanel extends JPanel {
             return;
         }
 
-        LocalDateTime ahora = LocalDateTime.now().plusHours(1); 
-        Timestamp fechaHoraSQL = Timestamp.valueOf(ahora); 
-
-        Cita cita = new Cita(
-            dniPaciente,
-            dniMedico,
-            fechaHoraSQL,
-            0, 
-            motivo
-        );
-
-        boolean exito = CitaDAO.insertarCita(cita);
-
-        if (exito) {
-            JOptionPane.showMessageDialog(this, "Cita registrada con éxito.");
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudo registrar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
+        Timestamp fechaHoraSQL;
+    if (chkHorarioManual.isSelected()) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime fechaManual = LocalDateTime.parse(txtHorarioManual.getText().trim(), formatter);
+            fechaHoraSQL = Timestamp.valueOf(fechaManual);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Formato de fecha inválido. Use: AAAA-MM-DD HH:MM", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+    } else {
+        fechaHoraSQL = Timestamp.valueOf(LocalDateTime.now().plusHours(1));
     }
+
+    // Validar horario (8:00 - 20:00)
+    int hora = fechaHoraSQL.toLocalDateTime().getHour();
+    if (hora < 8 || hora >= 20) {
+        JOptionPane.showMessageDialog(
+            this, 
+            "Las citas solo pueden agendarse entre 8:00 y 20:00 horas.", 
+            "Error", 
+            JOptionPane.ERROR_MESSAGE
+        );
+        return;
+    }
+
+    Cita cita = new Cita(dniPaciente, dniMedico, fechaHoraSQL, 0, motivo);
+    boolean exito = CitaDAO.insertarCita(cita);
+
+    if (exito) {
+        JOptionPane.showMessageDialog(this, "Cita registrada con éxito.");
+    } else {
+        JOptionPane.showMessageDialog(this, "No se pudo registrar la cita.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
 }

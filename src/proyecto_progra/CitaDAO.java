@@ -43,4 +43,45 @@ public class CitaDAO {
             return false;
         }
     }
+
+    public static boolean medicoDisponible(String dniMedico, Timestamp fechaHora) {
+    // Validar horario (8am-8pm)
+        int hora = fechaHora.toLocalDateTime().getHour();
+        if (hora < 8 || hora >= 20) {
+            return false;
+        }
+
+        // Validar si el médico ya tiene cita a esa hora
+        String sql = "SELECT COUNT(*) FROM Citas WHERE DniMed = ? AND FechaHora = ?";
+        try (Connection conn = ConexionMySQL.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, dniMedico);
+            stmt.setTimestamp(2, fechaHora);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next() && rs.getInt(1) == 0;
+        } catch (SQLException ex) {
+            System.err.println("Error al verificar disponibilidad: " + ex.getMessage());
+            return false;
+        }
+    }
+
+    public static boolean insertarHistorial(int idCita, String dniPaciente, String diagnostico, 
+                                          String tratamiento, String observaciones) {
+        String sql = "INSERT INTO Historial (idCita, dniPaciente, fecha, diagnostico, tratamiento, observaciones) " +
+                     "VALUES (?, ?, CURRENT_DATE(), ?, ?, ?)";
+        try (Connection conn = ConexionMySQL.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setInt(1, idCita);
+            stmt.setString(2, dniPaciente);
+            stmt.setString(3, diagnostico);
+            stmt.setString(4, tratamiento);
+            stmt.setString(5, observaciones);
+
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            System.err.println("Error al insertar historial: " + ex.getMessage());
+            return false;
+        }
+    }
 }

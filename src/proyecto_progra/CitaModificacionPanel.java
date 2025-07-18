@@ -140,6 +140,9 @@ public class CitaModificacionPanel extends JPanel {
                 JOptionPane.showMessageDialog(this, "Cita actualizada correctamente.");
                 buscarCitasPorDni(); // Refrescar tabla
             }
+            if(estado==1){
+                
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error al modificar cita: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
