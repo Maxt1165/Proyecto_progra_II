@@ -4,10 +4,7 @@
  */
 package proyecto_progra;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;

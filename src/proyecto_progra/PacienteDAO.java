@@ -28,11 +28,12 @@ public class PacienteDAO {
                     
                     if (respuesta != JOptionPane.YES_OPTION) {
                         JOptionPane.showMessageDialog(null, "Revise sus datos");
-                        return false;
                     }else{
                         int filasInsertadas = ps.executeUpdate();
                             return filasInsertadas > 0;                 
                    }
+        return false;
+
         } catch (SQLException e) {
             System.err.println("Error al insertar paciente: " + e.getMessage());
             return false;
