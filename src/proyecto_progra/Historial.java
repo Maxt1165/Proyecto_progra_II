@@ -25,11 +25,7 @@ public class Historial {
         this.tratamiento = tratamiento;
         this.observaciones = observaciones;
     }
-
-    public boolean validar() {
-        return diagnostico != null && !diagnostico.isBlank();
-    }
-        
+    
     public static JTable Obtenerhistorial(String dniPaciente) {
     final String SQL = "{call sp_HistorialPorPaciente(?)}";   
 
@@ -38,7 +34,11 @@ public class Historial {
         stmt.setString(1, dniPaciente);
         stmt.execute();
             
-        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Nombre Paciente", "Apellido Paciente", "Diagnóstico Actual", "Tratamiento", "Observaciones"}, 0);
+        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Nombre Paciente", 
+        "Apellido Paciente", 
+        "Diagnóstico Actual", 
+        "Tratamiento", 
+        "Observaciones"}, 0);
         try (ResultSet rs = stmt.getResultSet()) {
             while (rs != null && rs.next()) {
             Object[] fila = {
