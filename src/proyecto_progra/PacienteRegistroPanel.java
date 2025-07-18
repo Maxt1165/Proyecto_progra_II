@@ -41,7 +41,6 @@ public class PacienteRegistroPanel extends JPanel {
         add(new JLabel(""));
         add(btnRegistrar);
         btnRegistrar.addActionListener(e -> registrarPaciente());
-        
     }
 
     public void registrarPaciente(){  
